@@ -138,16 +138,17 @@ def update_charts(contents, filenames):
         
         try:
             # Save the file temporarily on the server-side
-            temp_dir = '/path/to/temp/'  # Update this with the desired temporary directory
+            temp_dir = 'internship\\app\\temp'  # Update this with the desired temporary directory
             os.makedirs(temp_dir, exist_ok=True)  # Create the temporary directory if it doesn't exist
-
+            print(filenames)
             temp_filepath = os.path.join(temp_dir, filename)  # Full path to the temporary file
+            print(temp_filepath)
             with open(temp_filepath, 'wb') as f:
                 f.write(decoded)
 
             # The file is directly received as a parameter in the callback function
             files = {'dataset_files': open(temp_filepath, 'rb')}
-            
+            print(files)
             # Fetch the processed JSON data from the Django view
             data = fetch_json_data(url, files)
             print(data)
